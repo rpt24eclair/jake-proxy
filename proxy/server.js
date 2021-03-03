@@ -6,8 +6,10 @@ const app = express();
 //change to local host if desired for environment 'http://localhost:3001' 'http://localhost:3002'
 const sizeColorServicePath = 'http://3.18.69.132:3001';
 const productServicePath = 'http://54.241.116.3:3002';
-const galleryServicePath = 'http://54.241.116.3:3004';
+const galleryServicePath = 'http://localhost:3004';
 const feedbackServicePath = 'http://3.18.69.132:3003'
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -102,6 +104,26 @@ app.get('/shoes/:shoeId/rating', (req, res) => {
     });
 });
 
+app.post('/products/:productId/gallery', jsonParser,(req, res) => {
+  let id = req.params.productId;
+
+  axios({
+    method: 'post',
+    url: `${galleryServicePath}/products/${id}/gallery`,
+    data: {
+      imageUrl: req.body.imageUrl,
+    
+    }
+  })
+  .then((response) => { 
+    res.send(response.data);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.send([]);
+  });
+
+});
 app.listen(port, () => {
   console.log(`Listening to port ${port}`);
 });
