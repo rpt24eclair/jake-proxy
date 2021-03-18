@@ -28,3 +28,4 @@ jspm_packages/
 *.sh
 
 public/bundles.js
+newrelic.js

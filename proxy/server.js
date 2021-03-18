@@ -1,13 +1,14 @@
+require('newrelic');
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const port = 3000;
 const app = express();
 //change to local host if desired for environment 'http://localhost:3001' 'http://localhost:3002'
-const sizeColorServicePath = 'http://3.18.69.132:3001';
+const sizeColorServicePath = 'http://54.174.50.6:3001';
 const productServicePath = 'http://54.241.116.3:3002';
-const galleryServicePath = 'http://localhost:3004';
-const feedbackServicePath = 'http://3.18.69.132:3003'
+const galleryServicePath = 'http://52.53.251.147:3005';
+const feedbackServicePath = 'http://3.22.221.227:3003'
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 
